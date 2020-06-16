@@ -8,15 +8,21 @@ ArXiv version: https://arxiv.org/abs/2004.10956
 
 ## TOPology-preserving knowledge InCrementer (TOPIC)
 
-The TOPIC framework for FSCIL is built with *neural gas* [1], a seminal algorithm that learns the topology of the data manifold in feature space via *competitive Hebbian learning* (CHL). Neural gas is capable of preserving the topology of any heterogenous, non-uniform manifold, making it perfect for FSCIL with imbalanced old/new classes.  The following animation shows the neural gas + CHL process.  
+The TOPIC framework for FSCIL is built with *neural gas* [1], a seminal algorithm that learns the topology of the data manifold in feature space via *competitive Hebbian learning* (CHL). Neural gas is capable of preserving the topology of any heterogenous, non-uniform manifold, making it perfect for FSCIL with imbalanced old/new classes.  The following animation shows the neural gas + CHL process. You may refer to an online demo of [2](https://www.demogng.de/js/demogng.html?_3DV) for better understanding the topology learning of neural gas.
 
 ![image](https://github.com/xyutao/fscil/blob/master/results/ng.gif)
 
 The TOPIC code will be released later after the commercial freezing period. 
 
 [1] Martinetz Thomas and Schulten Klaus. A "neural-gas" network learns topologies. *Artificial Neural Networks*, 1991.
+[2] Bernd Fritzke. A growing neural gas network learns topologies. *Advances in neural information processing systems*, 1995. 
 
-## Benchmark Results
+## FSCIL Benchmark Settings
+
+We modify CIFAR100, miniImageNet and CUB200 datasets for FSCIL. For CIFAR100 and miniImageNet, we choose 60 out of 100 classes as the base classes and split the rest 40 classes into 8 incremental learning sessions, each of which has 5 classes and 5 training samples per class. While for CUB200, we choose 100 base classes. The lists of image indexes used in each training session are stored in the directory
+> data/index_list
+
+## Comparison Results
 
 In the following tables, we provide detailed test accuracies of each method under different settings of benchmark datasets and CNN models. The reported results are the mean accuracies averaged over 10 runs.
 
