@@ -8,9 +8,9 @@ ArXiv version: https://arxiv.org/abs/2004.10956
 
 ## TOPology-preserving knowledge InCrementer (TOPIC)
 
-The TOPIC framework for FSCIL is built with *neural gas* [1], a seminal algorithm that learns the topology of the data manifold in feature space via *competitive Hebbian learning* (CHL). Neural gas is capable of preserving the topology of any heterogenous, non-uniform manifold, making it perfect for FSCIL with imbalanced old/new classes.  The following animination shows the neural gas + CHL process.  
+The TOPIC framework for FSCIL is built with *neural gas* [1], a seminal algorithm that learns the topology of the data manifold in feature space via *competitive Hebbian learning* (CHL). Neural gas is capable of preserving the topology of any heterogenous, non-uniform manifold, making it perfect for FSCIL with imbalanced old/new classes.  The following animation shows the neural gas + CHL process.  
 
-![image](https://github.com/xyutao/fscil/blob/master/ng.gif)
+![image](https://github.com/xyutao/fscil/blob/master/results/ng.gif)
 
 The TOPIC code will be released later after the commercial freezing period. 
 
@@ -24,7 +24,7 @@ In the following tables, we provide detailed test accuracies of each method unde
 
 These results are also reported in the figures of the paper.
 
-![image](https://github.com/xyutao/fscil/blob/master/fig4.png)
+![image](https://github.com/xyutao/fscil/blob/master/results/fig4.png)
 
 ### CIFAR100, QuickNet, *5-way 5-shot* (Fig.4 (a))
 
