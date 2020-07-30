@@ -8,4 +8,4 @@ First, at session 1, train a base model using the images in session_1.txt;
 
 Then, at session t (t>1), finetune the model trained at the previous session (t-1), only using the images in session_t.txt.
 
-For evaluating the model at session t, first joint all the encountered test sets as a single test set. Then test the current model using all the test images and compute the recognition accuarcy. 
+For evaluating the model at session t, first joint all the encountered test sets as a single test set. Then test the current model using all the test images and compute the recognition accuracy. 
