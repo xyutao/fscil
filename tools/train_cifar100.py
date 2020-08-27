@@ -17,7 +17,7 @@ from model.cifar_resnet_v1 import cifar_resnet20_v1
 from gluoncv.utils import makedirs
 from gluoncv.data import transforms as gcv_transforms
 
-from dataloader.dataloader import NC_CIFAR100,merge_datasets
+from dataloader.dataloader import NC_CIFAR100, merge_datasets
 from tools.utils import  LinearWarmUp
 from tools.utils import DataLoader
 from tools.utils import parse_args
@@ -68,7 +68,7 @@ save_period = opt.save_period
 
 plot_path = opt.save_plot_dir
 
-save_dir = time.strftime('/home/dsl/som_data/{}/{}/%Y-%m-%d-%H-%M-%S'.format(opt.dataset, model_name), time.localtime())
+save_dir = time.strftime('./experimental_result/{}/{}/%Y-%m-%d-%H-%M-%S'.format(opt.dataset, model_name), time.localtime())
 save_dir = save_dir + opt.save_name
 
 makedirs(save_dir)
