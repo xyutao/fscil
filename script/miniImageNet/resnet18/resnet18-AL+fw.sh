@@ -22,5 +22,5 @@ python ./tools/train_mini_imagenet.py \
     --c-way 5 \
     --k-shot 5 \
     --base-acc 61.31 \
-    --dataset 'NC_MINI_IMAGENET' \
+    --dataset 'NC_MiniImageNet' \
     --select-best 'select_best2'
