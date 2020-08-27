@@ -243,8 +243,6 @@ def train(net, ctx):
                     anchor_feat = [anchor_feat]
                     anchor_logit = [anchor_logit]
 
-                import pdb
-                pdb.set_trace()
         trainer = gluon.Trainer(net.collect_params(), optimizer,
                                 {'learning_rate': lrs[sess], 'wd': opt.wd, 'momentum': opt.momentum})
 
@@ -297,12 +295,12 @@ def train(net, ctx):
         # dataloader
         if opt.cum and sess==1 :
             base_class = list(np.arange(init_class))
-            cum_nc = DATASET(train=True, fine_label=True, c_way=init_class, k_shot=500, fix_class=base_class, logger=logger)
+            joint_data = DATASET(train=True, fine_label=True, c_way=init_class, k_shot=500, fix_class=base_class, logger=logger)
 
         if sess == 0 :
             base_class = list(np.arange(init_class))
             new_class = list(init_class + (np.arange(5)))
-            base_nc = DATASET(train=True, fine_label=True, c_way=init_class, k_shot=500, fix_class=base_class, logger=logger)
+            base_data = DATASET(train=True, fine_label=True, c_way=init_class, k_shot=500, fix_class=base_class, logger=logger)
             bc_val_data = DataLoader(DATASET(train=False, fine_label=True, fix_class=base_class, logger=logger)
                                       , transform_test, 100, num_workers, shuffle=False)
             nc_val_data = DataLoader(
@@ -319,11 +317,11 @@ def train(net, ctx):
                 , transform_test, 100, num_workers, shuffle=False)
 
         if sess == 0:
-            train_data = DataLoader(base_nc, transform_train, min(batch_size, base_nc.__len__()), num_workers, shuffle=True)
+            train_data = DataLoader(base_data, transform_train, min(batch_size, base_data.__len__()), num_workers, shuffle=True)
         else:
             if opt.cum: # cumulative : merge base and novel dataset.
-                cum_nc = merge_datasets(cum_nc, train_data_nc)
-                train_data = DataLoader(cum_nc, transform_train, min(batch_size, cum_nc.__len__()), num_workers, shuffle=True)
+                joint_data = merge_datasets(joint_data, train_data_nc)
+                train_data = DataLoader(joint_data, transform_train, min(batch_size, joint_data.__len__()), num_workers, shuffle=True)
 
             elif opt.use_all_novel: # use all novel data
 
@@ -376,8 +374,8 @@ def train(net, ctx):
                         all_loss.extend(disg_loss)
 
                     if sess > 0 and use_ng_max:
-                        maxloss = [loss_fn_max(feat, label, feature_size, epoch, sess,init_class) for feat, label in zip(output_feat, label)]
-                        all_loss.extend(maxloss[0])
+                        max_loss = [loss_fn_max(feat, label, feature_size, epoch, sess,init_class) for feat, label in zip(output_feat, label)]
+                        all_loss.extend(max_loss[0])
 
                     if sess > 0 and use_AL:    # For anchor loss
                         anchor_h = [net(X, sess, fix_cnn)[0] for X in anc_data]
@@ -421,7 +419,7 @@ def train(net, ctx):
                 if sess > 0 and use_ng_min:
                     train_min_loss += sum([al.mean().asscalar() for al in loss_min])
                 if sess > 0 and use_ng_max:
-                    train_max_loss += sum([al.mean().asscalar() for al in maxloss[0]])
+                    train_max_loss += sum([al.mean().asscalar() for al in max_loss[0]])
                 train_metric.update(label, output)
 
             train_loss /= batch_size * num_batch
