@@ -16,5 +16,5 @@ python ./tools/train_mini_imagenet.py \
     --cum \
     --c-way 5 \
     --k-shot 5 \
-    --dataset 'NC_MINI_IMAGENET' \
+    --dataset 'NC_MiniImageNet' \
     --select-best 'select_best2'
