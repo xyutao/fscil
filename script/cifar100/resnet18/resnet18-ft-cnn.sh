@@ -1,6 +1,6 @@
 #! /bin/sh
 
-python ./tools/train_cifar100_for_nc.py \
+python ./tools/train_cifar100.py \
     --gpus 1 \
     --wd 0.0005 \
     --batch-size 128 \
