@@ -117,7 +117,7 @@ def train(net, ctx):
         net.initialize(mx.init.Xavier(), ctx=ctx)
         if pretrained:
             logger.info('loading pre-trained model...')
-            net.load_parameters('/home/dsl/FICIL2020/params/CUB200/resnet19_inchead/resnet18_v1-a0666292.params', allow_missing=True, ignore_extra=True)
+            net.load_parameters('params/CUB200/baseline/resnet18_v1-a0666292.params', allow_missing=True, ignore_extra=True)
         if opt.dataset == 'NC_CUB200':
             n = mx.nd.zeros(shape=(1,3,224,224),ctx=ctx[0])  #####init CNN
         else:
