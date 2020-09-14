@@ -14,11 +14,11 @@ class_file = osp.join(root, 'classes.txt')
 prefix = 'CUB_200_2011/images'
 
 total_classes = 200
-base_classes = total_classes / 2
+base_classes = total_classes // 2
 inc_classes = 10    # should divide (num_total_classes - num_base_classes)
 
 # One session for the base classes and the remaining ones for the incremental classes
-sessions = 1 + (total_classes - base_classes) / inc_classes
+sessions = 1 + (total_classes - base_classes) // inc_classes
 
 split_list = list()
 with open(split_file, 'r') as fin:
