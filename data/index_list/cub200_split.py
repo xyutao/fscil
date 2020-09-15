@@ -1,14 +1,15 @@
 import os.path as osp
 
 # Your root directory for the unzipped files of CUB200
-root = './data/CUB_200_2011'
+data_dir = './data/dataset/CUB_200_2011'
+output_dir = './data/index_list/cub200'
 
 # It should contain the following files
-image_dir = osp.join(root, 'images')
-split_file = osp.join(root, 'train_test_split.txt')
-image_file = osp.join(root, 'images.txt')
-image_class_labels_file = osp.join(root, 'image_class_labels.txt')
-class_file = osp.join(root, 'classes.txt')
+image_dir = osp.join(data_dir, 'images')
+split_file = osp.join(data_dir, 'train_test_split.txt')
+image_file = osp.join(data_dir, 'images.txt')
+image_class_labels_file = osp.join(data_dir, 'image_class_labels.txt')
+class_file = osp.join(data_dir, 'classes.txt')
 
 # The prefix for the outputted file lists
 prefix = 'CUB_200_2011/images'
@@ -34,8 +35,8 @@ with open(image_file) as fin:
     image_list = fin.readlines()
 
 
-train_list_file = open(osp.join(root, 'train.txt'), 'w')
-test_list_file = open(osp.join(root, 'test.txt'), 'w')
+train_list_file = open(osp.join(output_dir, 'train.txt'), 'w')
+test_list_file = open(osp.join(output_dir, 'test.txt'), 'w')
 
 image_dic = dict()
 for line in image_list:
@@ -65,7 +66,7 @@ with open(image_class_labels_file) as fin:
 
 # For each session's test file
 for i in range(sessions):
-    session_test_file = open(osp.join(root, 'test_%d.txt' % (i+1)), 'w')
+    session_test_file = open(osp.join(output_dir, 'test_%d.txt' % (i+1)), 'w')
     if i == 0:
         start_class = 1
         end_class = base_classes
@@ -79,7 +80,3 @@ for i in range(sessions):
                 outline = image_dic[id]
                 session_test_file.write(outline + '\n')
     session_test_file.close()
-
-
-
-
