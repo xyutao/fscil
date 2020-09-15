@@ -10,4 +10,4 @@ Then, at session t (t>1), finetune the model trained at the previous session (t-
 
 For evaluating the model at session t, firstly join all the encountered test sets as a single test set. Then test the current model using all the test images and compute the recognition accuracy. 
 
-Specially for CUB200, the list of test images for each session's classes has been recorded in "cub200/test_t.txt". When evaluating the model on session t, please accumulate all the test images from test_1.txt to test_t.txt.
+The list of test images for each session's classes has been recorded in "test_t.txt" under each dataset's list folder. When evaluating the model on session t, please accumulate all the test images from test_1.txt to test_t.txt. To produce the list files for testing, switch to the root folder of this repository, put the source directory of each dataset under the folder "data/dataset" and run the split scripts.
