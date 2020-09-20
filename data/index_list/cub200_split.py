@@ -69,7 +69,7 @@ for i in range(sessions):
     session_test_file = open(osp.join(output_dir, 'test_%d.txt' % (i+1)), 'w')
     if i == 0:
         start_class = 1
-        end_class = base_classes
+        end_class = base_classes + 1
     else:
         start_class = base_classes + 1 + (i - 1) * inc_classes
         end_class = start_class + inc_classes
